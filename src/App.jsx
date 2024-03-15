@@ -20,6 +20,10 @@ function App() {
       alert("already in cart");
     }
   };
+  const handleDelete = (id) => {
+    const newCart = cart.filter((item) => item.id !== id);
+    setCart(newCart);
+  };
   // console.log(cart);
   return (
     <>
@@ -41,10 +45,20 @@ function App() {
             <h4>price</h4>
           </div>
           <div className="mt-4">
-            {cart.map((item, idx) => (
-              <div key={idx} className="flex justify-around  space-y-4">
+            {cart.map((item, index) => (
+              <div
+                key={cart.name}
+                className="flex justify-around items-center space-y-4"
+              >
+                <p>{index + 1}</p>
                 <h4>{item.title.slice(0, 10)}</h4>
                 <h4>{item.price}</h4>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="bg-purple-400 rounded-md py-1 px-1"
+                >
+                  Delete
+                </button>
               </div>
             ))}
           </div>
